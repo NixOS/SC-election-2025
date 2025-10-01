@@ -1,4 +1,3 @@
-
 * Name: Niko Cantero
 * GitHub handle: [@nyabinary](https://github.com/nyabinary)
 * Email: [nyanbinary@keemail.me](mailto:nyanbinary@keemail.me)
@@ -8,6 +7,16 @@
 ### Conflict of interest disclosure
 
 None.
+
+---
+
+### Coalition Statement
+
+I am proud to stand in coalition with [Julien Malka](https://github.com/JulienMalka), [Christina Sørensen](https://github.com/cafkafk), and [Niklas Korz](https://github.com/niklaskorz).
+
+Together, we pledge that if elected we will work **nicely, responsibly, and efficiently** as a team. Our shared commitment is to collaborate in good faith, respect each other’s perspectives, and uphold transparency and accountability while serving the Nix community. We recognize that the strength of the Steering Committee depends on cooperation, and we promise to ensure our coalition is a model of constructive and effective governance.
+
+In addition, we are committed to **passing reforms within the Steering Committee** that will strengthen transparency and accountability, ensuring the community has clear insight into decisions and the confidence that its voices are being represented.
 
 ---
 
@@ -35,12 +44,13 @@ Additionally, I am deeply committed to advocating for copyleft and free software
 
 ---
 
-### What I have done
+### What I Have Done
 
-* Played a role in making the out-of-tree [NixOS COSMIC flake](https://github.com/lilyinstarlight/nixos-cosmic) possible, including packaging COSMIC apps in nixpkgs, establishing the [NixOS COSMIC Matrix channel](https://matrix.to/#/#cosmic:nixos.org), and initializing efforts to [upstream COSMIC to nixpkgs](https://github.com/NixOS/nixpkgs/issues/259641).
-* Member of the COSMIC team.
-* Authored multiple [PRs to nixpkgs](https://github.com/NixOS/nixpkgs/pulls?q=is%3Aclosed+is%3Apr+author%3Anyabinary) and maintain multiple packages.
-* Was active in governance discussions across Discourse, [Zulip](https://nixpkgs.zulipchat.com/), and other community forums. These discussions have now concluded.
+* Contributed to the out-of-tree [NixOS COSMIC flake](https://github.com/lilyinstarlight/nixos-cosmic) effort by packaging COSMIC apps in nixpkgs, creating the [NixOS COSMIC Matrix channel](https://matrix.to/#/#cosmic:nixos.org), and initiating work to [upstream COSMIC to nixpkgs](https://github.com/NixOS/nixpkgs/issues/259641).
+* Active member of the COSMIC team.
+* Authored multiple [PRs to nixpkgs](https://github.com/NixOS/nixpkgs/pulls?q=is%3Aclosed+is%3Apr+author%3Anyabinary) and continue to maintain several packages.
+* Took part in governance discussions across Discourse, [Zulip](https://nixpkgs.zulipchat.com/), and other community spaces—helping to bring those conversations to a conclusion.
+* Played a role in exposing [Steering Committee misconduct](https://discourse.nixos.org/t/the-sc-prepared-to-lie-to-us-and-what-we-can-do-about-it-whistleblow/70103/4), advocating for [accountability](https://discourse.nixos.org/t/sc-member-tomberek-works-for-anduril/68971) and [transparency](https://discourse.nixos.org/t/a-statement-from-members-of-the-moderation-team/69828/85).
 
 ---
 
@@ -115,4 +125,3 @@ If you have **any questions at all**, please contact me:
 * **Email:** [nyanbinary@keemail.me](mailto:nyanbinary@keemail.me)
 
 I am always happy to chat or clarify anything about my candidacy.
-
