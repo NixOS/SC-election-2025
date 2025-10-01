@@ -57,6 +57,6 @@ I have contributed to the NixOS community these past 4 years in diverse areas:
 In an effort to bring clarity to the voters, I'd like to list candidates that I feel I share a broad alignment and would be able to work productively with (in no particular order):
 - [niklaskorz](https://github.com/NixOS/SC-election-2025/blob/main/candidates/niklaskorz.md)
 - [cafkafk](https://github.com/NixOS/SC-election-2025/blob/main/candidates/cafkafk.md)
-- [K900](https://github.com/NixOS/SC-election-2025/blob/main/candidates/k900.md)
+- [K900](https://github.com/NixOS/SC-election-2025/blob/main/candidates/K900.md)
 - [nyabinary](https://github.com/NixOS/SC-election-2025/blob/main/candidates/nyabinary.md)
 - [pluiedev](https://github.com/NixOS/SC-election-2025/blob/main/candidates/pluiedev.md)
