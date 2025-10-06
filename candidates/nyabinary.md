@@ -10,13 +10,13 @@ None.
 
 ---
 
-### Coalition Statement
+### Statement of Alignment
 
-I am proud to stand in coalition with [Julien Malka](https://github.com/JulienMalka), [Christina Sørensen](https://github.com/cafkafk), and [Niklas Korz](https://github.com/niklaskorz).
+I am broadly aligned with [Julien Malka](https://github.com/JulienMalka), [Christina Sørensen](https://github.com/cafkafk), and [Niklas Korz](https://github.com/niklaskorz). We share similar perspectives on how the Steering Committee should operate and how it can best serve the Nix community.
 
-Together, we pledge that if elected we will work **nicely, responsibly, and efficiently** as a team. Our shared commitment is to collaborate in good faith, respect each other’s perspectives, and uphold transparency and accountability while serving the Nix community. We recognize that the strength of the Steering Committee depends on cooperation, and we promise to ensure our coalition is a model of constructive and effective governance.
+I value their focus on collaboration, transparency, and accountability, and I believe that working with people who prioritize these principles will help make the Steering Committee more effective and responsive to the community’s needs.
 
-In addition, we are committed to **passing reforms within the Steering Committee** that will strengthen transparency and accountability, ensuring the community has clear insight into decisions and the confidence that its voices are being represented.
+While each of us is running independently, I am confident that our shared values and mutual respect will allow us to work well together if elected, ensuring that the Steering Committee functions as a cooperative and constructive body.
 
 ---
 
