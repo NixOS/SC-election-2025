@@ -4,7 +4,7 @@ import Data.Text (Text)
 import Data.Text qualified as Text
 import Prelude
 import Data.Text.IO qualified as Text
-import Data.Maybe (mapMaybe)
+import Data.Maybe (mapMaybe, fromMaybe)
 import Text.Read (readMaybe)
 import Data.IntMap.Strict (IntMap)
 import Data.IntMap.Strict qualified as IntMap
@@ -30,8 +30,8 @@ getEligibleEmails = IntMap.fromList . mapMaybe parse . Text.lines <$> Text.readF
         parse _ = Nothing
 
 data MaintainerEntry = MaintainerEntry
-    { githubId :: Int
-    , email :: Text
+    { githubId :: Maybe Int
+    , email :: Maybe Text
     }
     deriving stock (Generic)
     deriving anyclass (FromJSON)
@@ -39,16 +39,16 @@ data MaintainerEntry = MaintainerEntry
 getMaintainersListEmails :: FilePath -> IO (IntMap Text)
 getMaintainersListEmails file =
     IntMap.fromList
-        . fmap (\MaintainerEntry{..} -> (githubId, email))
-        . maybe mempty (Map.elems @Text)
-        <$> Aeson.decodeFileStrict file
+        . mapMaybe (\MaintainerEntry{..} -> (,) <$> githubId <*> email)
+        . either error (Map.elems @Text)
+        <$> Aeson.eitherDecodeFileStrict file
 
 getOldElectionEmails :: IO (IntMap Text)
 getOldElectionEmails =
     IntMap.fromList
         . mapMaybe (uncurry parse)
-        . maybe mempty (Map.toList @Text @Value)
-        <$> Aeson.decodeFileStrict "voters-2024.json"
+        . either error Map.toList
+        <$> Aeson.eitherDecodeFileStrict "voters-2024.json"
     where
         parse :: Text -> Value -> Maybe (Int, Text)
         parse email@(Text.elem ' ' -> False) (Number (toBoundedInteger -> Just githubId)) = Just (githubId, email)
@@ -61,16 +61,16 @@ main = do
     oldMaintainerEmails <- getMaintainersListEmails "maintainers-2024-09-15.json"
     newMaintainerEmails <- getMaintainersListEmails "maintainers-2025-10-05.json"
     oldElectionEmails <- getOldElectionEmails
-    let getFallbackEmail :: Int -> Maybe Text
-        getFallbackEmail githubId
-            | IntMap.member githubId eligibleEmails = Nothing
-            | otherwise =
-                let oldElectionEmail = IntMap.lookup githubId oldElectionEmails
+    let getEmail :: Int -> Maybe Text
+        getEmail githubId =
+                let eligibleEmail = IntMap.lookup githubId eligibleEmails
+                    oldElectionEmail = IntMap.lookup githubId oldElectionEmails
                     oldMaintainerEmail = IntMap.lookup githubId oldMaintainerEmails
                     newMaintainerEmail = let e = IntMap.lookup githubId newMaintainerEmails in if e == oldMaintainerEmail then Nothing else e
-                 in newMaintainerEmail <|> oldElectionEmail <|> oldMaintainerEmail
+                 in eligibleEmail <|> newMaintainerEmail <|> oldElectionEmail <|> oldMaintainerEmail
     Text.putStrLn "githubId,githubUsername,email"
     mapM_ (Text.putStrLn . (\(githubId, githubUsername, email) -> Text.intercalate "," [Text.pack (show githubId), githubUsername, email]))
-        . mapMaybe (\(githubId, githubUsername) -> (githubId,githubUsername,) <$> getFallbackEmail githubId)
+        . fmap (\(githubId, githubUsername) -> (githubId,githubUsername, fromMaybe "" $ getEmail githubId))
+        . filter (\(githubId, _) -> not $ IntMap.member githubId eligibleEmails)
         . IntMap.toList
         $ githubIds
