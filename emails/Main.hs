@@ -15,11 +15,11 @@ import Data.Aeson (FromJSON, Value (Number))
 import Data.Scientific (toBoundedInteger)
 import Control.Applicative ((<|>))
 
-getEligibleIds :: IO [Int]
-getEligibleIds = mapMaybe parse . Text.lines <$> Text.readFile "eligible.csv"
+getEligibleIds :: IO (IntMap Text)
+getEligibleIds = IntMap.fromList . mapMaybe parse . Text.lines <$> Text.readFile "eligible.csv"
     where
-        parse :: Text -> Maybe Int
-        parse (Text.split (== ',') -> [Text.unpack -> readMaybe -> Just githubId, _, _]) = Just githubId
+        parse :: Text -> Maybe (Int, Text)
+        parse (Text.split (== ',') -> [Text.unpack -> readMaybe -> Just githubId, githubUsername, _]) = Just (githubId, githubUsername)
         parse _ = Nothing
 
 getEligibleEmails :: IO (IntMap Text)
@@ -69,5 +69,8 @@ main = do
                     oldMaintainerEmail = IntMap.lookup githubId oldMaintainerEmails
                     newMaintainerEmail = let e = IntMap.lookup githubId newMaintainerEmails in if e == oldMaintainerEmail then Nothing else e
                  in newMaintainerEmail <|> oldElectionEmail <|> oldMaintainerEmail
-    Text.putStrLn "githubId,email"
-    mapM_ (Text.putStrLn . (\(githubId, email) -> Text.pack (show githubId) <> "," <> email)) $ mapMaybe (\githubId -> (githubId,) <$> getFallbackEmail githubId) githubIds
+    Text.putStrLn "githubId,githubUsername,email"
+    mapM_ (Text.putStrLn . (\(githubId, githubUsername, email) -> Text.intercalate "," [Text.pack (show githubId), githubUsername, email]))
+        . mapMaybe (\(githubId, githubUsername) -> (githubId,githubUsername,) <$> getFallbackEmail githubId)
+        . IntMap.toList
+        $ githubIds
