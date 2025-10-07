@@ -1,0 +1,73 @@
+module Main where
+
+import Data.Text (Text)
+import Data.Text qualified as Text
+import Prelude
+import Data.Text.IO qualified as Text
+import Data.Maybe (mapMaybe)
+import Text.Read (readMaybe)
+import Data.IntMap.Strict (IntMap)
+import Data.IntMap.Strict qualified as IntMap
+import Data.Aeson qualified as Aeson
+import Data.Map.Strict qualified as Map
+import GHC.Generics (Generic)
+import Data.Aeson (FromJSON, Value (Number))
+import Data.Scientific (toBoundedInteger)
+import Control.Applicative ((<|>))
+
+getEligibleIds :: IO [Int]
+getEligibleIds = mapMaybe parse . Text.lines <$> Text.readFile "eligible.csv"
+    where
+        parse :: Text -> Maybe Int
+        parse (Text.split (== ',') -> [Text.unpack -> readMaybe -> Just githubId, _, _]) = Just githubId
+        parse _ = Nothing
+
+getEligibleEmails :: IO (IntMap Text)
+getEligibleEmails = IntMap.fromList . mapMaybe parse . Text.lines <$> Text.readFile "eligible.csv"
+    where
+        parse :: Text -> Maybe (Int, Text)
+        parse (Text.split (== ',') -> [Text.unpack -> readMaybe -> Just githubId, _, email@(Text.null -> False)]) = Just (githubId, email)
+        parse _ = Nothing
+
+data MaintainerEntry = MaintainerEntry
+    { githubId :: Int
+    , email :: Text
+    }
+    deriving stock (Generic)
+    deriving anyclass (FromJSON)
+
+getMaintainersListEmails :: FilePath -> IO (IntMap Text)
+getMaintainersListEmails file =
+    IntMap.fromList
+        . fmap (\MaintainerEntry{..} -> (githubId, email))
+        . maybe mempty (Map.elems @Text)
+        <$> Aeson.decodeFileStrict file
+
+getOldElectionEmails :: IO (IntMap Text)
+getOldElectionEmails =
+    IntMap.fromList
+        . mapMaybe (uncurry parse)
+        . maybe mempty (Map.toList @Text @Value)
+        <$> Aeson.decodeFileStrict "voters-2024.json"
+    where
+        parse :: Text -> Value -> Maybe (Int, Text)
+        parse email@(Text.elem ' ' -> False) (Number (toBoundedInteger -> Just githubId)) = Just (githubId, email)
+        parse _ _ = Nothing
+
+main :: IO ()
+main = do
+    githubIds <- getEligibleIds
+    eligibleEmails <- getEligibleEmails
+    oldMaintainerEmails <- getMaintainersListEmails "maintainers-2024-09-15.json"
+    newMaintainerEmails <- getMaintainersListEmails "maintainers-2025-10-05.json"
+    oldElectionEmails <- getOldElectionEmails
+    let getFallbackEmail :: Int -> Maybe Text
+        getFallbackEmail githubId
+            | IntMap.member githubId eligibleEmails = Nothing
+            | otherwise =
+                let oldElectionEmail = IntMap.lookup githubId oldElectionEmails
+                    oldMaintainerEmail = IntMap.lookup githubId oldMaintainerEmails
+                    newMaintainerEmail = let e = IntMap.lookup githubId newMaintainerEmails in if e == oldMaintainerEmail then Nothing else e
+                 in newMaintainerEmail <|> oldElectionEmail <|> oldMaintainerEmail
+    Text.putStrLn "githubId,email"
+    mapM_ (Text.putStrLn . (\(githubId, email) -> Text.pack (show githubId) <> "," <> email)) $ mapMaybe (\githubId -> (githubId,) <$> getFallbackEmail githubId) githubIds

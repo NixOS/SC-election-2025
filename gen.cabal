@@ -52,7 +52,7 @@ common common
 
 executable gen
     import:           common
-    hs-source-dirs:   app
+    hs-source-dirs:   gen
     ghc-options:      -threaded
     main-is:          Main.hs
     other-modules:
@@ -80,3 +80,15 @@ executable gen
         time,
         unordered-containers,
         wreq,
+
+executable emails
+    import:           common
+    hs-source-dirs:   emails
+    ghc-options:      -threaded
+    main-is:          Main.hs
+    other-modules:
+    build-depends:
+        aeson,
+        containers,
+        text,
+        scientific,
