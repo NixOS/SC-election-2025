@@ -1,0 +1,1 @@
+grep -E '"GET /confirm//' /var/nginx/logs/www_log   | grep ' 200 300 '  | grep -v '^51.77.215.60 '  | cut -d \" -f 2 | cut -d ' ' -f 2 | sort | uniq| cut -d / -f 4,5 | while IFS=/ read user emailb64; do echo "s/,$user,\$/,$user,$(base64 -d <<< $emailb64)/;" ; done
