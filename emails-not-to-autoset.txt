@@ -15,3 +15,8 @@ edmund.wu@protonmail.com
 nixos@oluceps.uk
 s@muel.gr
 sergiomarcelo@yandex.com
+obadz-nixos@obadz.com
+nixpkgs@beardhatcode.be
+leungbk@mailfence.com
+johannes.arnold@stud.uni-hannover.de
+akhtaboo@protonmail.com
