@@ -55,8 +55,10 @@ After the question has been posted, only candidates and nominees can respond to 
 | Submission of questions from eligible voters to candidates | 2025-09-14 | 2025-10-03 |
 | Exception requests      | 2025-09-14              | 2025-10-11              |
 | Candidates' answers to the questions | 2025-09-14 | 2025-10-11              |
-| Voter registration      | 2025-09-14              | 2025-10-14              |
+| Voter registration (for inclusion in the initial OpaVote upload)      | 2025-09-14              | 2025-10-14              |
 | Voting                  | 2025-10-15              | 2025-11-01              |
+
+We will make an effort to regularly, once per 3 days or more often, upload the later registrations to OpaVote, but this will be manual and not in real time»
 
 ## Election Committee (EC)
 
