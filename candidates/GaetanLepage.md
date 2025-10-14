@@ -7,7 +7,7 @@
 ### Conflict of interest disclosure
 
 All my open source contributions to nix projects are made in my free time.
-I have never been paid for my work in this area.
+I have never been paid for my work in this area (and I have no current employment in general).
 
 ### Motivation to be on the Steering Committee
 
