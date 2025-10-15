@@ -6,7 +6,7 @@
 
 ### Conflict of interest disclosure
 
-I currently work as a cashier, with no relation to Nix in my work.
+I currently work as a cashier at Walmart, with no relation to Nix in my work.
 
 ### Motivation to be on the Steering Committee
 
