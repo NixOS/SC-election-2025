@@ -60,6 +60,8 @@ After the question has been posted, only candidates and nominees can respond to 
 
 We will make an effort to regularly, once per 3 days or more often, upload the later registrations to OpaVote, but this will be manual and not in real time»
 
+Voting end date is AoE: you can vote as long as anywhere on the Earth (latest timezone on the Earth is equivalent to UTC-12, the zone that is 12 hours behind UTC year-round) it is still 2025-11-01.
+
 ## Election Committee (EC)
 
 The EC is the temporary team to administer the election from start to finish. Its primary mission is to ensure legitimacy of the election.
