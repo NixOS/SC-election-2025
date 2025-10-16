@@ -60,7 +60,13 @@ After the question has been posted, only candidates and nominees can respond to 
 
 We will make an effort to regularly, once per 3 days or more often, upload the later registrations to OpaVote, but this will be manual and not in real time»
 
-Voting end date is AoE: you can vote as long as anywhere on the Earth (latest timezone on the Earth is equivalent to UTC-12, the zone that is 12 hours behind UTC year-round) it is still 2025-11-01.
+Voting end date is 2025-11-01 *Anywhere on Earth* (AoE, UTC-12), which is the most delayed timezone.
+This means if your (local) clock shows 2025-11-01 or an earlier date you can still vote.
+If your (local) clock shows 2025-11-02 (one day after the end date) you *may* still be able to vote but you will have to compare timezones[^timezone-command] to be sure.
+
+[^timezone-command]: `env TZ=Etc/GMT+12 date --rfc-3339=s` will give you the relvevant AoE time and date.
+As long as *the date portion* still displays 2025-11-01 or earlier this means you can still vote.
+Any time left before the following day (2025-11-02) is the time left for voting.
 
 ## Election Committee (EC)
 
