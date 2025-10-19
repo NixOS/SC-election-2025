@@ -20,3 +20,4 @@ nixpkgs@beardhatcode.be
 leungbk@mailfence.com
 johannes.arnold@stud.uni-hannover.de
 akhtaboo@protonmail.com
+raphael-git@tapesoftware.net
