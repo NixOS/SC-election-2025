@@ -1,0 +1,10 @@
+### Projects
+
+https://davidcary.github.io/Meeks-PRF-web/count-votes/
+https://github.com/DavidCary/Meeks-PRF-web
+
+https://github.com/wrmack/NZSTV-OCaml
+
+### Features
+
+Resignation-replacement count support
